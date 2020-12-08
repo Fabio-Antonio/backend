@@ -15,6 +15,9 @@ validarCampos,
 ],
 crearUsuario);
 //router.post('/',enviar);
+
+
+
 router.put('/:id',[
     validarJWT,
     check('nombre','El nombre es obligatorio').not().isEmpty(),

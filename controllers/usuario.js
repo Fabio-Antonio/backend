@@ -4,33 +4,67 @@ const{response}=require('express');
 const nodemailer = require('nodemailer');
 const bcryptjs= require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
-const enviar = (req,res) => {
- var transporter = nodemailer.createTransport({
+
+const enviar = async (req,res) => {
+    console.log(req.body);
+ 
+var transporter = nodemailer.createTransport({
  service: "gmail",
  auth: {
- user: "ing.fabio.a@gmail.com", // Cambialo por tu email
- pass: "sunsmile3pace" // Cambialo por tu password
- }
+ user: process.env.CORREO, // Cambialo por tu email
+ pass: process.env.PASS, // Cambialo por tu password
+ },
  });
- console.log(req.body);
- const {email,password,nombre} = req.body;
+ 
+ const {email,nombre,mensaje} = req.body;
 
 const mailOptions = {
- from: `”${req.body.nombre}” <${req.body.email}>`,
+ from: `”Viversidad” <${process.env.CORREO}>`,
  to: req.body.email, // Cambia esta parte por el destinatario
- subject: "prueba",
- text :"prueba",
+ subject: "Estamos para servirle",
  html: `
- <strong>Nombre:</strong> ${req.body.nombre} <br/>
- <strong>E-mail:</strong> ${req.body.email} <br/>
- <strong>Mensaje:</strong> ${req.body.nombre}
- `
+ <!DOCTYPE html>
+ <html lang=${"es"}>
+   <head>
+     <meta charset=${"utf-8"}>
+     <meta http-equiv=${"X-UA-Compatible"} content=${"IE=edge"}>
+     <meta name=${"viewport"} content=${"width=device-width, initial-scale=1"}>
+      
+     <!-- CSS -->
+     <link href=${"/favicon.ico"} rel=${"shortcut icon"}>
+     <link href=${"https://framework-gb.cdn.gob.mx/assets/styles/main.css"} rel=${"stylesheet"}>
+</head>
+ <body>
+ <main class=${"page"}>
+
+ <div class=${"container"}>
+ <h1>   Viversidad</h1>
+ <h2>Gracias por contactarnos</h2>
+
+ <strong>Estimado </strong> <label>${req.body.nombre}</label>, <br/>
+ <strong>se encuentra en status de: </strong> ${req.body.mensaje}
+ </div>
+ <div>
+ <button onclick=${"location.href='http://google.com'"}class=${"btn btn-primary pull-right"}>Ir</button>
+
+ </div>
+ </main>
+
+    <!-- JS -->
+    <script src=${"https://framework-gb.cdn.gob.mx/gobmx.js"}></script>
+ </body>
+ </html>
+ `,
  };
-transporter.sendMail(mailOptions, function (err, info) {
+ await transporter.sendMail(mailOptions, function (err, info) {
  if (err)
  console.log(err)
  else
  console.log(info);
+ res.json({
+     ok:true,
+     msg:"correo enviado"
+ })
  });
 }
 
@@ -38,12 +72,22 @@ transporter.sendMail(mailOptions, function (err, info) {
 
 
 const getUsuarios = async (req,res)=>{
-
-    const usuarios = await Usuario.find({},'nombre email');
+    const desde = Number(req.query.desde)||0;
+    console.log(desde);
+    
+    
+    const [usuarios,total]= await Promise.all([
+        Usuario.find({},'nombre email img')
+        .skip(desde)
+        .limit(5),
+        Usuario.countDocuments()
+    ])
     res.json({
         ok:true,
         usuarios,
-        uid: req.uid
+        uid: req.uid,
+        registrados: total
+
     });
     }
 

@@ -1,6 +1,8 @@
 const Usuario = require('../models/usuarios');
 const bcrypt = require ('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
+const { response } = require('express');
+const { verify } = require('jsonwebtoken');
 const login = async (req,res= response) =>{
 
     const {email,password} = req.body;
@@ -38,6 +40,42 @@ const login = async (req,res= response) =>{
     }
 }
 
+GoogleSignIn = async (req,res = response) =>{
+    const googletoken = req.body.token;
+try {
+    const {name,email,picture}=await verify(googletoken);
+const usuarioDb = await Usuario.findOne({email});
+let usuario;
+if(!usuarioDb){
+usuario = new Usuario({
+    nombre : name,
+    email,
+    password: '@@@',
+    img : picture,
+    google : true
+})
+}else{
+    usuario= usuarioDb;
+    usuario.google= true;
+}
+ await usuario.save();
+ const token = await generarJWT (usuario.id);
+    res.json({
+    ok:true,
+    token,
+    msg: 'GoogleSignIn',
+    googletoken,
+    name,email,picture
+});
+}catch(error){
+    res.status(401).json({
+        ok:false,
+        msg: "token incorrecto"
+    })
+}
+}
+
 module.exports = {
-    login
+    login,
+    GoogleSignIn
 }

@@ -39,10 +39,10 @@ const mailOptions = {
 
  <div class=${"container"}>
  <h1>   Viversidad</h1>
- <h2>Gracias por contactarnos</h2>
+ <h2>Gracias por su preferencia</h2>
 
  <strong>Estimado </strong> <label>${req.body.nombre}</label>, <br/>
- <strong>se encuentra en status de: </strong> ${req.body.mensaje}
+ <strong>Respuesta a su solicitud: </strong> ${req.body.mensaje}
  </div>
  <div>
  <button onclick=${"location.href='http://google.com'"}class=${"btn btn-primary pull-right"}>Ir</button>

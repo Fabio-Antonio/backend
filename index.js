@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 dbConnection();
+ app.use(express.static('public'));
  app.use('/api/usuarios',require('./routes/usuarios'));
  app.use('/api/login',require('./routes/auth'));
  app.use('/api/hospitales',require('./routes/hospitales'));

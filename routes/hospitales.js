@@ -15,10 +15,14 @@ router.post('/',[
     validarCampos
 ],
 crearHospitales);
-//router.post('/',enviar);
+
 router.put('/:id',[
+    validarJWT,
+
 ],actualizarHospitales);
-router.delete('/:id',borrarHospitales);
+router.delete('/:id',[
+    validarJWT,
+],borrarHospitales);
 
 
 

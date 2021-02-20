@@ -23,7 +23,7 @@ switch (tipo){
         if(!medico){
             return false;
         }
-         pathViejo= `./uploads/medicos/${medico.img}`;
+         pathViejo= `./public/uploads/medicos/${medico.img}`;
         borrarImagen(pathViejo);
         medico.img= nombreArchivo;
         await medico.save();
@@ -34,7 +34,7 @@ switch (tipo){
             if(!hospital){
                 return false;
             }
-            pathViejo= `./uploads/hospitales/${hospital.img}`;
+            pathViejo= `./public/uploads/hospitales/${hospital.img}`;
             borrarImagen(pathViejo);
             hospital.img= nombreArchivo;
             await hospital.save();
@@ -45,7 +45,7 @@ switch (tipo){
             if(!usuario){
                 return false;
             }
-             pathViejo= `./uploads/usuarios/${usuario.img}`;
+             pathViejo= `./public/uploads/usuarios/${usuario.img}`;
             borrarImagen(pathViejo);
             usuario.img= nombreArchivo;
             await usuario.save();

@@ -2,6 +2,8 @@ const { response } = require("express");
 const {v4: uuidv4}= require('uuid');
 const {actualizarImagen} = require("../helpers/actualizar-imagen");
 const path = require('path');
+
+
 const fileupload = (req,res = response)=>{
 const tipo = req.params.tipo;
 const id = req.params.id;
@@ -32,7 +34,7 @@ if (!req.files || Object.keys(req.files).length === 0) {
   }
 const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;
 
-const path = `./uploads/${tipo}/${nombreArchivo}`;
+const path = `./public/uploads/${tipo}/${nombreArchivo}`;
 
 file.mv(path,(err) => {
     if (err){

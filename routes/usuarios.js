@@ -14,6 +14,7 @@ check('email','El email es obligatorio').isEmail(),
 validarCampos,
 ],
 crearUsuario);
+
 //router.post('/',enviar);
 
 

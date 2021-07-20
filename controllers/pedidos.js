@@ -1,6 +1,6 @@
 
 const{response}=require('express');
-const { Array_Color, Array_total } = require('../helpers/arreglos');
+const { Array_Color, Array_total,Arreglos } = require('../helpers/arreglos');
 const Pedidos = require('../models/pedidos');
 
 const crearPedido = async (req, res) =>{
@@ -89,22 +89,27 @@ try {
 }
 const getPedidosC = async (req,res)=>{
     try{
-      
-      
-        const [ pedidos, total ] = await Promise.all([
+        
+       let productos = [];
+        const  pedidos  = await Promise.all([
             Pedidos
-                .skip(0)
-                .limit( 8 ),
-    
-            Pedidos.countDocuments()
+                 .find()
+                 .sort({nombre_producto:1})
+                 .limit(8)
+                 .populate('producto')
         ]);
-          
-        const {pedidos1,pedidos2}= await Arreglos(Pedidos);
-          
+        
+        for (let i =0; i<pedidos[0].length;i++){
+            productos.push(pedidos[0][i].producto)   
+    }
+                  
+        const {productos1,productos2}= await Arreglos(productos);
+        
+                  
          res.status(200).json(
           {ok:true,
-            pedidos1,
-            pedidos2
+          productos1,
+          productos2
           } 
           );
       }catch{

@@ -16,6 +16,11 @@ const entregasSchema = Schema({
         type: String,
         required: true
         },
+        referencias:{
+            type: String,
+            required: true
+            },
+
     telefono: {
         type: String,
         required: true

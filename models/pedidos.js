@@ -1,5 +1,10 @@
 const {Schema,model} = require('mongoose');
 const pedidoSchema = Schema({
+    producto : {
+        type: Schema.Types.ObjectId,
+        ref: 'productos',
+        required: true
+    },
 token: {
 type:String,
 required :true

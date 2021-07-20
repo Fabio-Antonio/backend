@@ -63,8 +63,25 @@ const getProducto = async (req,res)=>{
     }
   }
 
+  const getProductos = async (req,res=response)=>{
+     try {
+      const productos= await Producto.find();
+      res.status(200).json(
+        {ok:true,
+          productos 
+        });
+
+     } catch (error) {
+      res.status(500).json(
+        {ok:false,
+          msg:'error en el servidor'} 
+        );
+     }   
+  }
+
 module.exports= {
 
 getProducto,
+getProductos,
 setProducto
 }

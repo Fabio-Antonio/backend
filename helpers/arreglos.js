@@ -3,7 +3,6 @@ const Color = require('../models/color');
 
 const Arreglos = async (productos)=>{
 
-
     const productos1=[];
     const productos2=[];
    

@@ -1,7 +1,8 @@
 
 const{response}=require('express');
 const Pedidos = require('../models/pedidos');
-const getPedidos=async(req,res=response)=>{
+
+const getVentasc=async(req,res=response)=>{
 
     try {
                     
@@ -22,5 +23,5 @@ const getPedidos=async(req,res=response)=>{
 }
 
 module.exports={
-    getPedidos
+    getVentasc
 }

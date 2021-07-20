@@ -8,7 +8,7 @@ const setColor_c = async (req,res=response)=>{
         await color_c.save();
         res.status(200).json(
             {ok:true,
-              msg:'Color_c creado'} 
+              msg:'Se ha asignado el color correctamente'} 
             );
     } catch (error) {
         res.status(500).json(

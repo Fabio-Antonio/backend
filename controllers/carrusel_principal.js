@@ -11,11 +11,13 @@ const getProductos = async (req,res)=>{
       const [ productos, total ] = await Promise.all([
         Productos
             .find()
+            .sort({nombre_producto:1})
             .limit(8),
 
         Productos.countDocuments()
     ]);
-       
+
+           
       const {productos1,productos2}= await array.Arreglos(productos);
         
        res.status(200).json(

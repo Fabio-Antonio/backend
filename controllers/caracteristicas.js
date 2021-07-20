@@ -8,7 +8,7 @@ const setCaracteristica = async (req,res=response)=>{
         await caracteristica.save();
         res.status(200).json(
             {ok:true,
-              msg:'Color creado'} 
+              msg:'Característica creada correctamente'} 
             );
     } catch (error) {
         res.status(500).json(

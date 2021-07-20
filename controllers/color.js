@@ -18,6 +18,24 @@ const setColor = async (req,res=response)=>{
     }
 }
 
+
+const getColor = async (req,res=response)=>{
+  try {
+
+      const color = await Color.find();
+      res.status(200).json(
+          {ok:true,
+            color} 
+          );
+  } catch (error) {
+      res.status(500).json(
+          {ok:false,
+            msg:'error al obtener los colores'} 
+          );
+  }
+}
+
 module.exports= {
-    setColor
+    setColor,
+    getColor
     }

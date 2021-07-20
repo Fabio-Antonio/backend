@@ -21,6 +21,24 @@ try{
     );
 }
 }
+
+const getMarcas = async (req,res)=>{
+  try{
+    
+    const marca = await Marca.find(); 
+  
+  
+     res.status(200).json(
+      {ok:true,
+        marca} 
+      );
+  }catch{
+    res.status(500).json(
+      {ok:false,
+        msg : "Error en el servidor"} 
+      );
+  }
+  }
 const setMarca = async (req,res=response)=>{
   try {
 
@@ -39,5 +57,6 @@ const setMarca = async (req,res=response)=>{
 }
 module.exports= {
 getMarca,
-setMarca
+setMarca,
+getMarcas
 }

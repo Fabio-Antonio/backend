@@ -20,6 +20,22 @@ try{
 }
 }
 
+const getClasificacions = async (req,res)=>{
+  try{
+       
+    const clasificacion = await Sub_categoria.find();  
+     res.status(200).json(
+      {ok:true,
+        clasificacion} 
+      );
+  }catch{
+    res.status(500).json(
+      {ok:false,
+        msg : "Error en el servidor"} 
+      );
+  }
+  }
+
 
 const setClasificacion= async(req,res=response)=>{
   try {
@@ -41,5 +57,6 @@ const setClasificacion= async(req,res=response)=>{
 
 module.exports= {
 getClasificacion,
-setClasificacion
+setClasificacion,
+getClasificacions
 }

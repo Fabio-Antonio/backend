@@ -98,10 +98,56 @@ const getVentas = async (req,res=response)=>{
    }   
 }
 
-    
+    const updateVenta= async(req,res=response)=>{
+      const token= req.params.token;
+      const status= req.params.status;
+
+      try {
+       
+        const venta = await Entregas.find({token:token});
+       
+        if(venta==null){
+          return res.status(404).json({
+            ok: false,
+            msg: 'No se ha encontrado el pedido'
+        });
+        }
+        
+        const Actualizado = await Entregas.findOneAndUpdate({token:token},{status:status},{ new: true });  
+        if(Actualizado==null){
+        res.status(500).json(
+          {ok:false,
+            msg:'error al actualizar'} 
+          );
+       }
+       switch(status){
+         case "Entrega":
+          res.status(200).json(
+            {ok:true,
+              msg:"Pedido listo para entrega"
+            });
+           break;
+           case "Completado":
+            res.status(200).json(
+              {ok:true,
+                msg:"Pedido completado"
+              });
+            break;
+       }
+
+
+      
+      } catch (error) {
+        res.status(500).json(
+          {ok:false,
+            msg:'error en el servidor'} 
+          );
+      }
+    }
 
 
 module.exports={
     crearVenta,
-    getVentas
+    getVentas,
+    updateVenta
 }

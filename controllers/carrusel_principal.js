@@ -8,13 +8,12 @@ const getProductos = async (req,res)=>{
 
     try{
       
-      const [ productos, total ] = await Promise.all([
+      const productos = await Promise.all([
         Productos
             .find()
             .sort({nombre_producto:1})
             .limit(8),
 
-        Productos.countDocuments()
     ]);
 
            
@@ -40,22 +39,40 @@ const getProductos = async (req,res)=>{
 const getProductosMarca = async (req,res)=>{
     try{
       
-      const uid_marca = req.params.uid_marca;
-
-      const productos = await Primise.all ([
+      const uid_marca = req.params.marca;
+      const productos = await Promise.all ([
         Productos
-        .findById(uid_marca)
-        .skip(0)
-            .limit( 8 )])
+        .find({marca:uid_marca})
+        .sort({nombre_producto:1})
+        .limit(8)
 
-      const {productos1,productos2}= await array.Arreglos(productos);
-        
-       res.status(200).json(
+      ]);   
+      
+     if(productos[0].length<4){
+
+      const productos1 = productos[0];
+      const productos2=[];
+
+      res.status(200).json(
         {ok:true,
           productos1,
           productos2
         } 
         );
+
+
+     }else{
+      const {productos1,productos2}= await array.Arreglos(productos);
+        
+      res.status(200).json(
+       {ok:true,
+         productos1,
+         productos2
+       } 
+       );
+     }
+
+     
     }catch{
       res.status(500).json(
         {ok:false,

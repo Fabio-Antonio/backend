@@ -1,7 +1,9 @@
 
 const{response}=require('express');
-const { Array_Color, Array_total,Arreglos } = require('../helpers/arreglos');
+const {  Array_total,Arreglos_productos } = require('../helpers/arreglos');
 const Pedidos = require('../models/pedidos');
+const { distinct } = require('../models/productos');
+const productos = require('../models/productos');
 
 const crearPedido = async (req, res) =>{
      
@@ -90,28 +92,30 @@ try {
 const getPedidosC = async (req,res)=>{
     try{
         
-       let productos = [];
         const  pedidos  = await Promise.all([
             Pedidos
                  .find()
                  .sort({nombre_producto:1})
                  .limit(8)
                  .populate('producto')
+                 
         ]);
         
-        for (let i =0; i<pedidos[0].length;i++){
-            productos.push(pedidos[0][i].producto)   
-    }
-                  
-        const {productos1,productos2}= await Arreglos(productos);
+      
+    
+        const {productos1,productos2}= await Arreglos_productos(pedidos);
+
         
-                  
+       
          res.status(200).json(
           {ok:true,
           productos1,
           productos2
           } 
           );
+
+    
+        
       }catch{
         res.status(500).json(
           {ok:false,

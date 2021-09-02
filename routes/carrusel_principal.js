@@ -7,7 +7,7 @@ const {getProductos,getProductosMarca} =  require('../controllers/carrusel_princ
 
 
 router.get('/',getProductos);
-router.get('/:uid',getProductosMarca);
+router.get('/:marca',getProductosMarca);
 
 
 module.exports = router;

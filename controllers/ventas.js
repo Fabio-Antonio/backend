@@ -1,9 +1,12 @@
 
 const  conekta = require('conekta');
 const{response}=require('express');
+const{Array_pedidos_correo}=require('../helpers/arreglos')
 const Entregas=require('../models/entregas');
 const Pedido= require('../models/pedidos');
+const emailCheck = require('email-check');
 const {sendMail}= require('../helpers/correo');
+const { check } = require('express-validator');
 conekta.api_key = 'key_gQ6TXEcwJGcCAURhEbiexQ';
 conekta.locale = 'es';
 
@@ -14,9 +17,20 @@ const crearVenta = async (req, res) =>{
     try {
 
       let status=false;
-       
+      let status_email=false;
+      
+   /* status_email= emailCheck(req.body.email,{
+      from: process.env.CORREO,
+      host: 'gmail',
+      timeout: 3000
+    }).then(res=>{
+      console.log(res);
+    }).catch(res=>{
+      console.log(res);
+    })
+ */
 
-       
+
      const pago = await conekta.Order.create({
         "currency": "MXN",
         "customer_info": {
@@ -48,8 +62,8 @@ const crearVenta = async (req, res) =>{
         const venta = new Entregas(req.body);
         await venta.save(); 
              
-          const r =  await Pedido.find({token: req.body.token}).select('nombre_producto'); 
-          const pedidos = JSON.stringify(r);
+          const r =  await Pedido.find({token: req.body.token}); 
+          const pedidos = JSON.stringify(await Array_pedidos_correo(r));
           const correo = await sendMail(req.body.nombre,req.body.email,req.body.token,req.body.total,req.body.direccion,req.body.pais,req.body.estado,pedidos);
          
 

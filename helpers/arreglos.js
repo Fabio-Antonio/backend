@@ -122,10 +122,28 @@ const Array_isEmpty = async (Arreglo)=>{
          return total;
  }
 
+
+
+ const Array_pedidos_correo = async(pedidos)=>{
+     let pedido=[];
+     
+
+     for(let i=0; i<pedidos.length;i++){
+       
+          if(pedidos[i].nombre_producto){
+             pedido.push(pedidos[i].nombre_producto+" cantidad: "+pedidos[i].cantidad);
+          }
+
+     }
+
+     return pedido;
+ }
+
 module.exports={
     Arreglos,
     Array_Color,
     Array_total,
     Array_isEmpty,
-    Arreglos_productos
+    Arreglos_productos,
+    Array_pedidos_correo
 }

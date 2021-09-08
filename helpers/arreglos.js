@@ -1,4 +1,5 @@
 const Color = require('../models/color');
+const Producto= require('../models/productos');
 
 
 const Arreglos = async (productos)=>{
@@ -24,7 +25,7 @@ const Arreglos_productos = async (productos)=>{
 
     const productos1=[];
     const productos2=[];
-    const produc=[];
+    var produc=null;
     var product;
     var cont=0;
     
@@ -33,39 +34,28 @@ const Arreglos_productos = async (productos)=>{
       
         product=productos[0][i];
 
-
-        if(product){
-
-            if(i>0){
-                produc.push(product.producto);
-               
-                if(produc[i].nombre_producto==produc[i-1].nombre_producto){
-                    produc[i-1]= null;
-                }
+          if(i<4){
+            if(product){
+                produc= await Producto.findOne({nombre_producto: product});
+                productos1.push(produc);
+            }  else{
+                productos1.push(null);
+            }
             
-            }else{
-                produc[i]=product.producto;
-            }      
-
-        }else{
-            produc[i]=null;
-        }
-    }
-
-      for(i=0;i<7;i++){
-
-          if(produc[i]){
-
-            if(cont<4){
-            
-                productos1.push(produc[i]);
-                cont++;
           }else{
+
+            if(product){
+                produc= await Producto.findOne({nombre_producto: product});
+                productos2.push(produc);
+            }  else{
+                productos2.push(null);
+            }
+
+          }
             
-                productos2.push(produc[i]);
-                           
-          }
-          }
+        
+
+      
          
           
       }

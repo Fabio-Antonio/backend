@@ -3,9 +3,11 @@ const { Router } = require('express');
 const router = Router();
 const {getProductosSub} =  require('../controllers/buscar');
 
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarUrl } = require('../middlewares/validar-busqueda');
 
-router.get('/:uid',getProductosSub);
+router.get('/:uid',
+validarUrl,
+getProductosSub);
 
 
 module.exports = router;

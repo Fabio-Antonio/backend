@@ -3,9 +3,11 @@ const { Router } = require('express');
 const router = Router();
 const {getMarca,setMarca,getMarcas} =  require('../controllers/marca');
 
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarUrl } = require('../middlewares/validar-busqueda');
 
-router.get('/:uid',getMarca);
+router.get('/:uid',
+validarUrl,
+getMarca);
 router.get('/',getMarcas)
 router.post('/',setMarca);
 

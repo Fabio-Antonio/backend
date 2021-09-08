@@ -20,7 +20,7 @@ const validarVenta = (req,res = response,next) =>{
   numero_tarjeta:Joi.string().max(16).required(),
   mm:Joi.string().regex(/^[0-9]+$/).max(2).required(),
   aa:Joi.string().regex(/^[0-9]+$/).max(2).required(),
-  cvv:Joi.string().max(3).required(),
+  cvv:Joi.string().regex(/^[0-9]+$/).max(3).required(),
   token:Joi.string().alphanum().required(),
   fecha:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,. ]+$/).required(),
   total:Joi.number().required(),

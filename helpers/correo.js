@@ -199,14 +199,14 @@ const sendMail = async (nombre, email,token,total,direccion,pais,estado,pedidos)
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                 <tr>
                                     <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
-                                        <h2 style="font-size: 24px; font-weight: 800; line-height: 30px; color: #ffffff; margin: 0;"> Get 30% off your next order. </h2>
+                                        <h2 style="font-size: 24px; font-weight: 800; line-height: 30px; color: #ffffff; margin: 0;"> Encuentra más productos</h2>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="padding: 25px 0 15px 0;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 5px;" bgcolor="#66b3b7"> <a href="#" target="_blank" style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;">Shop Again</a> </td>
+                                                <td align="center" style="border-radius: 5px;" bgcolor="#FF9A00"> <a href="#" target="_blank" style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #FF9A00; padding: 15px 30px; border: 1px solid #FF9A00; display: block;">Ir a la tienda</a> </td>
                                             </tr>
                                         </table>
                                     </td>
@@ -218,16 +218,16 @@ const sendMail = async (nombre, email,token,total,direccion,pais,estado,pedidos)
                         <td align="center" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                 <tr>
-                                    <td align="center"> <img src="logo-footer.png" width="37" height="37" style="display: block; border: 0px;" /> </td>
+                                    <td align="center"> <img src="https://logos-marcas.com/wp-content/uploads/2020/05/WhatsApp-Logotipo.png" width="37" height="37" style="display: block; border: 0px;" /> </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
-                                        <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;"> 675 Parko Avenue<br> LA, CA 02232 </p>
+                                        <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">Contáctanos<br> +52 55 13 78 90 67 </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
-                                        <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;"> If you didn't create an account using this email address, please ignore this email or <a href="#" target="_blank" style="color: #777777;">unsusbscribe</a>. </p>
+                                        <p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;"> Dejanos tu comentario para seguir mejorando nuestro servicio en<a href="#" target="_blank" style="color: #777777;">yalovi.com</a>. </p>
                                     </td>
                                 </tr>
                             </table>

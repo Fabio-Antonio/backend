@@ -2,8 +2,6 @@
 const{response}=require('express');
 const {  Array_total,Arreglos_productos } = require('../helpers/arreglos');
 const Pedidos = require('../models/pedidos');
-const { distinct } = require('../models/productos');
-const productos = require('../models/productos');
 
 const crearPedido = async (req, res) =>{
      
@@ -97,11 +95,10 @@ const getPedidosC = async (req,res)=>{
                  .find()
                  .sort({nombre_producto:1})
                  .limit(8)
-                 .populate('producto')
+                 .distinct('nombre_producto')
                  
         ]);
         
-      
     
         const {productos1,productos2}= await Arreglos_productos(pedidos);
 

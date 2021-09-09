@@ -3,9 +3,11 @@ const { Router } = require('express');
 const router = Router();
 const {setCaracteristica} =  require('../controllers/caracteristicas');
 
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarCaracteristica } = require('../middlewares/validar-caracteristicas');
 
-router.post('/',setCaracteristica);
+router.post('/',
+validarCaracteristica,
+setCaracteristica);
 
 
 module.exports = router;

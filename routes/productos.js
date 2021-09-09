@@ -3,13 +3,15 @@ const { Router } = require('express');
 const router = Router();
 const {getProducto,setProducto,getProductos} =  require('../controllers/productos');
 
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarProducto } = require('../middlewares/validar-producto');
 
 
 
 router.get('/:uid',getProducto);
 router.get('/',getProductos);
-router.post('/',setProducto);
+router.post('/',
+validarProducto,
+setProducto);
 
 
 module.exports = router;

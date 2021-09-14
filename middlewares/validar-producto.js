@@ -12,7 +12,7 @@ const validarProducto = (req,res = response,next) =>{
           precio:Joi.number().required(),
           marca:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$/).required(),
           url_imagen:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:\-\d_/]+$/).required(),
-          segunada_mano:Joi.boolean().required(),
+          segunda_mano:Joi.boolean().required(),
           descuento:Joi.boolean().required()
            
        

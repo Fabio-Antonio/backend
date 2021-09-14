@@ -4,10 +4,15 @@ const nodemailer=require('nodemailer');
 const e = require('express');
 
 let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp-mail.outlook.com", // hostname
+    secureConnection: false, // TLS requires secureConnection to be false
+    port: 587,
     auth: {
         user: process.env.CORREO,
         pass: process.env.PASS
+    },
+    tls: {
+        ciphers:'SSLv3'
     }
 });
 
@@ -15,7 +20,7 @@ const sendMail = async (nombre, email,token,total,direccion,pais,estado,pedidos)
     try {
     
         const mailOptions = {
-            from: 'YA lO VI <yalovi.servicioalcliente@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
+            from: 'YA lO VI <yalovi.ventas.servicio@outlook.com>', // Something like: Jane Doe <janedoe@gmail.com>
             to: email,
             subject: 'Gracias por tu compra', // email subject
             html: `

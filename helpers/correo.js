@@ -245,14 +245,23 @@ const sendMail = async (nombre, email,token,total,direccion,pais,estado,pedidos)
 </body>
             ` // email content in HTML
         };
-     
-         if(transporter.sendMail(mailOptions)){
-             return "Revise la orden de compra en su correo electrónico";
-         } else{
-            return "Error al envíar la notificación de correo electrónico espere la confirmación via sms";
-   
-         }
-        
+
+
+        await new Promise((resolve, reject) => {
+            // send mail
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                } else {
+                    console.log(info);
+                    resolve(info);
+                }
+            });
+        });
+       
+        return "Revise su orden de compra en su correo electrónico";
+
     } catch (error) {
         return "Error al envíar la notificación de correo electrónico espere la confirmación via sms";
     }

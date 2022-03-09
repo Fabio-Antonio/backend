@@ -8,7 +8,7 @@ const validarVenta = (req,res = response,next) =>{
        
   nombre:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/).required(),
   apellidos:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/).required(),
-  email:Joi.string().email(),
+  email:Joi.string().email().required(),
   direccion:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,. ]+$/).required(),
   referencias:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,. ]+$/).required(),
   telefono:Joi.string().regex(/^[+0-9]+$/).required(),

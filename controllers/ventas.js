@@ -5,7 +5,7 @@ const{Array_pedidos_correo}=require('../helpers/arreglos')
 const Entregas=require('../models/entregas');
 const Pedido= require('../models/pedidos');
 const emailCheck = require('email-check');
-const {sendMail}= require('../helpers/correo');
+const {sendMail,sendMailDelivery}= require('../helpers/correo');
 const { check } = require('express-validator');
 conekta.api_key = 'key_gQ6TXEcwJGcCAURhEbiexQ';
 conekta.locale = 'es';
@@ -129,19 +129,23 @@ const getVentas = async (req,res=response)=>{
         
         const Actualizado = await Entregas.findOneAndUpdate({token:token},{status:status},{ new: true });  
         if(Actualizado==null){
-        res.status(500).json(
+        return res.status(500).json(
           {ok:false,
             msg:'error al actualizar'} 
           );
        }
+       const email = Actualizado.email;
+       
        switch(status){
          case "Entrega":
+           await sendMailDelivery(email,'Tú pedido está listo para la entrega, esperalo en un máximo de 48 horas',token)
           res.status(200).json(
             {ok:true,
               msg:"Pedido listo para entrega"
             });
            break;
            case "Completado":
+            await sendMailDelivery(email,'Tú pedido se ha completado, Muchas gracias por comprar con nosotros',token)
             res.status(200).json(
               {ok:true,
                 msg:"Pedido completado"

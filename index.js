@@ -23,7 +23,8 @@ app.use('/api/pedidos_a',require('./routes/pedidos_a'));
 app.use('/api/ventas',require('./routes/ventas'));
 app.use('/api/color_c',require('./routes/color_c'));
 app.use('/api/analytical',require('./routes/analytical'));
- 
+app.use('/api/verificacion',require('./routes/verificacion'));
+app.use('/api/auth',require('./routes/auth')); 
 app.listen(process.env.PORT, () => {
 console.log('servidor corriendo en puerto '+ process.env.PORT);
 });

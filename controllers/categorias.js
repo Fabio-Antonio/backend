@@ -20,7 +20,6 @@ const getCategoria = async (req,res=response)=>{
 const setCategoria= async(req,res=response)=>{
   try {
 
-
      const categoria = new Categorias(req.body);
      await categoria.save();
 

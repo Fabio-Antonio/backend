@@ -25,6 +25,8 @@ app.use('/api/color_c',require('./routes/color_c'));
 app.use('/api/analytical',require('./routes/analytical'));
 app.use('/api/verificacion',require('./routes/verificacion'));
 app.use('/api/auth',require('./routes/auth')); 
+const server= 
 app.listen(process.env.PORT, () => {
 console.log('servidor corriendo en puerto '+ process.env.PORT);
 });
+ module.exports = {app,server}

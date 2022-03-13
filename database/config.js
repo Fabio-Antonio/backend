@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+const { MongoMemoryServer } = require('mongodb-memory-server');
+
+let mongod = null;
 
 const dbConnection = async ()=>{
     try{
+        let dbUrl = process.env.DB_CNN;
+        if (process.env.NODE_ENV === 'test') {
+          mongod = await MongoMemoryServer.create();
+          dbUrl = mongod.getUri()+'test';
+        }
    await mongoose
-    .connect(process.env.DB_CNN,
+    .connect(dbUrl,
      {useNewUrlParser: true, 
         useUnifiedTopology: true,
         useCreateIndex: true
@@ -17,8 +25,22 @@ const dbConnection = async ()=>{
 }
 }
 
+const disconnectDB = async () => {
+    try {
+      await mongoose.connection.close();
+      if (mongod) {
+        await mongod.stop();
+      }
+    } catch (err) {
+      console.log(err);
+      process.exit(1);
+    }
+  };
+  
+
 module.exports = {
-    dbConnection
+    dbConnection,
+    disconnectDB
 }
 /*mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
 

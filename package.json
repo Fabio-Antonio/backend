@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js",
-    "start:PROD": "node index"
+    "start:PROD": "node index",
+    "start:test": "NODE_ENV=test jest"
   },
   "keywords": [],
   "author": "",
@@ -28,5 +29,10 @@
     "nodemailer": "^6.4.16",
     "uuid": "^8.3.1",
     "vercel": "^23.1.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "mongodb-memory-server": "^8.4.0",
+    "supertest": "^6.2.2"
   }
 }

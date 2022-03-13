@@ -6,6 +6,13 @@ const { disconnectDB } = require('../database/config');
 
 describe('API test', () => {
  
+  afterAll(done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    disconnectDB()
+    server.close();
+    done()
+
+  })
 
   describe('/api/categorias', () => {
 

@@ -17,7 +17,9 @@
       "PORT" :"@yalovi-server-port",
       "DB_CNN":"@yalovi-server-db_cnn",
       "CORREO":"@yalovi-server-correo",
-      "PASS":"@yalovi-server-pass"
+      "PASS":"@yalovi-server-pass",
+      "CONEKTA_API_KEY":"@yalovi-server-conekta_api_key",
+      "CONEKTA_LOCALE":"@yalovi-server-conekta_locale"
     }
   }
   

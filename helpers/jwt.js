@@ -1,14 +1,16 @@
 const jwt = require('jsonwebtoken');
 
-const generarJWT = (uid,name,email,photoURL,phoneNumber) =>{
+const generarJWT = (userDb) =>{
 return new Promise((resolve,reject)=>{
-    const payload = {
-        uid,
-        name,
-        email,
-        photoURL,
-        phoneNumber
-    };
+    console.info(userDb);
+  const payload = {
+    uid:userDb._id,
+    name:userDb.name,
+    email: userDb.email,
+    photoURL:userDb.photoURL,
+    phoneNumber: userDb.phoneNumber
+  };
+
     jwt.sign(payload,process.env.JWT_SECRET,{
         expiresIn: '12h'
     },(err,token)=>{

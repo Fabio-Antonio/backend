@@ -4,11 +4,9 @@ const{response}=require('express');
 const{Array_pedidos_correo}=require('../helpers/arreglos')
 const Entregas=require('../models/entregas');
 const Pedido= require('../models/pedidos');
-const emailCheck = require('email-check');
 const {sendMail,sendMailDelivery}= require('../helpers/correo');
-const { check } = require('express-validator');
-conekta.api_key = 'key_gQ6TXEcwJGcCAURhEbiexQ';
-conekta.locale = 'es';
+conekta.api_key = process.env.CONEKTA_API_KEY;
+conekta.locale = process.env.CONEKTA_LOCALE;
 
 
 

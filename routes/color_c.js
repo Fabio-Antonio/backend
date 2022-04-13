@@ -3,9 +3,9 @@ const { Router } = require('express');
 const router = Router();
 const {setColor_c} =  require('../controllers/color_c');
 
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
-router.post('/',setColor_c);
+router.post('/',validarJWT,setColor_c);
 
 
 module.exports = router;

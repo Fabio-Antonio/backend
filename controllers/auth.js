@@ -16,7 +16,7 @@ const setAuth = async( req, res = response ) => {
         const usuarioDB = await User.findOne({ email });
 
         if ( usuarioDB ) {
-            const token = await generarJWT( usuarioDB);
+            const token = await generarJWT(usuarioDB);
             return res.json({
                 ok: true,
                 msg: 'Hola de nuevo!!',

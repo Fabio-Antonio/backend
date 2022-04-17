@@ -31,8 +31,11 @@ descuento:{
     type:Boolean,
 required :true,
 default: false
+},
+sizes:{
+    type:Array,
+    default:[]
 }
-,
 });
 ProductosSchema.method('toJSON',function(){
     const {_v,_id,...object}=this.toObject();

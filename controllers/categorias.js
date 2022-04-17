@@ -34,7 +34,29 @@ const setCategoria= async(req,res=response)=>{
   }
   }
 
+  const deleteCategoria = async (req,res)=>{
+    try {
+    
+        const uid=req.params.uid;
+    
+        await Categorias.findByIdAndDelete(uid);
+    
+          res.status(200).json({
+            ok:true,
+           msg:"Categoría eliminada correctamente"
+        }); 
+         
+          
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg: 'Error inesperado... comunicate con el administrador'
+        }); 
+    }
+    }
+
 module.exports= {
 getCategoria,
-setCategoria
+setCategoria,
+deleteCategoria
 }

@@ -55,8 +55,30 @@ const setClasificacion= async(req,res=response)=>{
   }
   }
 
+  const deleteClasificacion = async (req,res)=>{
+    try {
+    
+        const uid=req.params.uid;
+    
+        await Sub_categoria.findByIdAndDelete(uid);
+    
+          res.status(200).json({
+            ok:true,
+           msg:"Sub categoría eliminada correctamente"
+        }); 
+         
+          
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg: 'Error inesperado... comunicate con el administrador'
+        }); 
+    }
+    }
+
 module.exports= {
 getClasificacion,
 setClasificacion,
-getClasificacions
+getClasificacions,
+deleteClasificacion
 }

@@ -9,7 +9,7 @@ app.use(express.json());
 dbConnection();
  app.use(express.static('public')); 
  app.use('/api/categorias',require('./routes/categorias'));
- app.use('/api/color',require('./routes/color'));
+ app.use('/api/selections',require('./routes/selections'));
  app.use('/api/imagenes',require('./routes/imagenes'));
  app.use('/api/caracteristicas',require('./routes/caracteristicas'));
 app.use('/api/clasificacion',require('./routes/clasificacion'));

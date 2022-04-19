@@ -1,4 +1,4 @@
-const Color = require('../models/color');
+
 const Producto= require('../models/productos');
 
 
@@ -52,34 +52,14 @@ const Arreglos_productos = async (productos)=>{
             }
 
           }
-            
-        
-
-      
-         
-          
+                
       }
         
-          
-           
-        
-
-  
- 
     return {
         productos1,
         productos2
     }
 }
-
-
-
-const Array_Color = async (uid)=>{
-    
-    const color = await Color.findById(uid);
-      return color;
-}
-
 
 const Array_isEmpty = async (Arreglo)=>{
 
@@ -131,7 +111,6 @@ const Array_isEmpty = async (Arreglo)=>{
 
 module.exports={
     Arreglos,
-    Array_Color,
     Array_total,
     Array_isEmpty,
     Arreglos_productos,

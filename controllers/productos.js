@@ -1,39 +1,26 @@
 
-const {Array_Color} = require('../helpers/arreglos');
 const{response}=require('express');
 const Imagenes= require('../models/imagenes');
 const Caracteristicas= require('../models/caracteristicas');
-const Colores_c=require('../models/colores_c');
 const Producto = require('../models/productos');
 
 const getProducto = async (req,res)=>{
   try{
     const uid =req.params.uid;
-    let imagenes =null;
-    let caracteristicas =null
-    let colores_c = null;
-    let color  = null;
-    let colores = [];
-     
-    imagenes = await Imagenes.find({producto:uid});
-    caracteristicas = await Caracteristicas.find({producto:uid});
-    colores_c=await Colores_c.find({producto:uid});
+    const imagenes = await Imagenes.find({producto:uid});
+    const caracteristicas = await Caracteristicas.find({producto:uid});;
     const producto= await Producto.findById(uid);
-
-    if(colores_c){
-      for(let i=0; i<colores_c.length;i++){
-         
-         colores[i]= await Array_Color(colores_c[i].color);
-  
-        }
-    }
+    
+    const colores = producto.colors;
+    const sizes  = producto.sizes;
     
       res.status(200).json(
       {ok:true,
         imagenes,
         caracteristicas,
         producto,
-        colores
+        colores,
+        sizes
       } 
       );
   }catch{

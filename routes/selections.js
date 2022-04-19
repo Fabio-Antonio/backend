@@ -1,16 +1,14 @@
 const { Router } = require('express');
 //import * as check from 'express-validator';
 const router = Router();
-const {setColor,getColor} =  require('../controllers/color');
+const {getSelections} =  require('../controllers/selections');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 const { validarColor } = require('../middlewares/validar-color');
 
-router.post('/',
+router.get('/',
 validarJWT,
-validarColor,
-setColor);
-router.get('/',getColor)
+getSelections)
 
 
 module.exports = router;

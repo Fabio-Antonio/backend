@@ -1,14 +1,16 @@
 const{response}=require('express');
-const Color_c = require('../models/colores_c');
+const Producto = require('../models/productos');
 
 const setColor_c = async (req,res=response)=>{
     try {
-
-        const color_c = new Color_c(req.body);
-        await color_c.save();
+        const uid = req.body.uid;
+        const color = req.body.name;
+        const code = req.body.code;
+      
+       const respon= await Producto.updateOne({_id:uid},{$push: {colors: {name: color,code:code}}});
         res.status(200).json(
             {ok:true,
-              msg:'Se ha asignado el color correctamente'} 
+              msg:'Se ha agreado el color correctamente'} 
             );
     } catch (error) {
         res.status(500).json(

@@ -80,23 +80,25 @@ const getVerificacion = async (req,res)=>{
           }
          
           numerov=verificacion.numero_verificacion;
-        
-        if(numerov==numero){
-            const Actualizado = await Verificacion.findOneAndUpdate({token:token},{status:true},{ new: true });  
-            if(Actualizado==null){
-            return res.status(500).json(
-              {ok:false,
-                msg:'error al verificar'} 
-              );
-           }
-           res.status(200).json(
-            {ok:true,
-              msg :'Correo verificado',
-                Actualizado
-            });
+        if(numerov!=numero){
+        return res.status(500).json(
+            {ok:false,
+              msg:'el código es incorrecto intente de nuevo'} 
+            );
         }  
          
-     
+        const Actualizado = await Verificacion.findOneAndUpdate({token:token},{status:true},{ new: true });  
+        if(Actualizado==null){
+        return res.status(500).json(
+          {ok:false,
+            msg:'error al verificar'} 
+          );
+       }
+       res.status(200).json(
+        {ok:true,
+          msg :'Correo verificado',
+            Actualizado
+        });
       
 
      } catch (error) {

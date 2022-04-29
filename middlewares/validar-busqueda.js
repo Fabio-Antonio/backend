@@ -10,7 +10,7 @@ const validarUrl = (req,res = response,next) =>{
 
    const UidSchema = Joi.object().keys({ 
        
-  uid:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ., ]+$/).required(),
+  uid:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ.,/ \-]+$/).required(),
      
    }); 
 

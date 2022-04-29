@@ -9,7 +9,7 @@ const validarAuth = (req,res = response,next) =>{
            
           name: Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/).required(),          
           email:Joi.string().email().required(),
-          photoURL:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:\-\d_/]+$/).required(),
+          photoURL:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:?=\-\d_/]+$/).required(),
           phoneNumber:Joi.string().regex(/^[0-9+]+$/)
        
         }); 

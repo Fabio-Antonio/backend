@@ -8,7 +8,7 @@ const validarImagen = (req,res = response,next) =>{
    const ImagenSchema = Joi.object().keys({ 
            
           producto: Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$/).required(),          
-          url_imagen:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:\-\d_/]+$/).required(),
+          url_imagen:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.?=:\-\d_/]+$/).required(),
          
        
         }); 

@@ -8,7 +8,7 @@ const validarCaracteristica = (req,res = response,next) =>{
    const caracteristicaSchema = Joi.object().keys({ 
            
           producto: Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/).required(),          
-          caracteristica:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,. ]+$/).required(),
+          caracteristica:Joi.string().regex(/^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,. \-]+$/).required(),
          
        
         }); 

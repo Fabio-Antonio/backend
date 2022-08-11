@@ -26,7 +26,11 @@ const setAuth = async( req, res = response ) => {
 
         // Verificar contraseña
         //const validPassword = bcrypt.compareSync( password, usuarioDB.password );
-        const usuario = new User(req.body);
+        const user={
+          ...req.body,
+          rol:"CL"
+        }
+        const usuario = new User(user);
         // Generar el TOKEN - JWT
         usuario.save()
         const token = await generarJWT(usuario);

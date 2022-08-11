@@ -3,32 +3,62 @@ const{response}=require('express');
 const array = require('../helpers/arreglos');
 
 const Productos = require('../models/productos');
+const Pedidos = require('../models/pedidos');
 
 const getProductos = async (req,res)=>{
 
     try{
       
-      const productos = await Promise.all([
+      const lastProducts = await Promise.all([
         Productos
             .find()
             .sort({nombre_producto:1})
-            .limit(8),
+            .limit(4),
 
     ]);
 
+    const searchRecentCart = await Promise.all([
+      Pedidos
+           .find()
+           .sort({nombre_producto:1})
+           .limit(4)
+           .distinct('nombre_producto')
            
-      const {productos1,productos2}= await array.Arreglos(productos);
-        
+    ]);
+
+    const searchProducts = await array.getRecentProducts(searchRecentCart);
+    const marca = searchProducts[0].marca;
+
+  const marcProducts = await Promise.all([
+    Productos
+        .find()
+        .where({marca})
+        .sort({nombre_producto:1})
+        .limit(4),
+
+   ]);    
+
+   const oldProducts = await Promise.all([
+    Productos
+        .find()
+        .sort({nombre_producto:0})
+        .limit(4),
+
+   ]);     
        res.status(200).json(
         {ok:true,
-          productos1,
-          productos2
+          lastProducts,
+          searchProducts,
+          marcProducts,
+          oldProducts
         } 
         );
-    }catch{
+    }catch(error){
       res.status(500).json(
         {ok:false,
-          msg : "Error en el servidor"} 
+          msg : "Error en el servidor",
+          error
+        } 
         );
     }
     }
@@ -62,7 +92,7 @@ const getProductosMarca = async (req,res)=>{
 
 
      }else{
-      const {productos1,productos2}= await array.Arreglos(productos);
+      const {productos1,productos2}= array.Arreglos(productos);
         
       res.status(200).json(
        {ok:true,

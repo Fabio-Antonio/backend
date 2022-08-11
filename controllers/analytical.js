@@ -47,10 +47,10 @@ const getAnalitycs = async (req,res=response)=>{
       ]);
 
 
-      total_compras = await Array_isEmpty(compras);
-      total_entregas = await Array_isEmpty(entrega);
-      total_completado =await Array_isEmpty(completado);
-      total_todo= await Array_isEmpty(total);
+      total_compras =  Array_isEmpty(compras);
+      total_entregas =  Array_isEmpty(entrega);
+      total_completado = Array_isEmpty(completado);
+      total_todo=  Array_isEmpty(total);
     
         result=[{
             "compras":total_compras,

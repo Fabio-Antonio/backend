@@ -10,6 +10,7 @@ dbConnection();
  app.use(express.static('public')); 
  app.use('/api/categorias',require('./routes/categorias'));
  app.use('/api/selections',require('./routes/selections'));
+ app.use('/api/configuration',require('./routes/configuration'));
  app.use('/api/imagenes',require('./routes/imagenes'));
  app.use('/api/caracteristicas',require('./routes/caracteristicas'));
 app.use('/api/clasificacion',require('./routes/clasificacion'));

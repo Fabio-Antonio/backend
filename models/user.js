@@ -17,6 +17,10 @@ photoURL:{
 phoneNumber:{
     type:String,
     default : true
+},
+rol:{
+    type:String,
+    default : true
 }
 ,
 });

@@ -1,8 +1,8 @@
 
 const Producto= require('../models/productos');
+const Productos = require('../models/productos');
 
-
-const Arreglos = async (productos)=>{
+const Arreglos = (productos)=>{
 
     const productos1=[];
     const productos2=[];
@@ -61,7 +61,7 @@ const Arreglos_productos = async (productos)=>{
     }
 }
 
-const Array_isEmpty = async (Arreglo)=>{
+const Array_isEmpty = (Arreglo)=>{
 
 
      if(Arreglo[0] == null){
@@ -74,7 +74,7 @@ const Array_isEmpty = async (Arreglo)=>{
 }
 
 
- const Array_total = async(pedidos)=>{
+ const Array_total = (pedidos)=>{
          let cantidad = 0;
          let precio  = 0;
          let total =0;
@@ -94,7 +94,7 @@ const Array_isEmpty = async (Arreglo)=>{
 
 
 
- const Array_pedidos_correo = async(pedidos)=>{
+ const Array_pedidos_correo = (pedidos)=>{
      let pedido=[];
      
 
@@ -109,10 +109,22 @@ const Array_isEmpty = async (Arreglo)=>{
      return pedido;
  }
 
+const getRecentProducts= async(recentCart)=>{
+    let productsId=[]
+    
+      recentCart.map((item)=>{
+          productsId.push(item.id);
+      });
+   return await Producto.find().where('id').in(productsId).exec();
+      
+ }
+
+
 module.exports={
     Arreglos,
     Array_total,
     Array_isEmpty,
     Arreglos_productos,
-    Array_pedidos_correo
+    Array_pedidos_correo,
+    getRecentProducts
 }

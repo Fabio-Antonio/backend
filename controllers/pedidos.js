@@ -87,43 +87,10 @@ try {
     }); 
 }
 }
-const getPedidosC = async (req,res)=>{
-    try{
-        
-        const  pedidos  = await Promise.all([
-            Pedidos
-                 .find()
-                 .sort({nombre_producto:1})
-                 .limit(8)
-                 .distinct('nombre_producto')
-                 
-        ]);
-        
-    
-        const {productos1,productos2}= await Arreglos_productos(pedidos);
 
-        
-       
-         res.status(200).json(
-          {ok:true,
-          productos1,
-          productos2
-          } 
-          );
-
-    
-        
-      }catch{
-        res.status(500).json(
-          {ok:false,
-            msg : "Error en el servidor"} 
-          );
-      }
-}
 
 module.exports={
     crearPedido,
     getPedidos,
     deletePedido,
-    getPedidosC
 }

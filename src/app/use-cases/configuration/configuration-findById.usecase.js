@@ -1,4 +1,4 @@
-const { ConfigurationIdNotFoundUseException }= require("../../errors/configuration/configuration.id.not.found.execption.js");
+const  ConfigurationIdNotFoundUseException = require("../../errors/configuration/configuration.id.not.found.execption.js");
 
 
 class ConfigurationFindByIdUseCase {

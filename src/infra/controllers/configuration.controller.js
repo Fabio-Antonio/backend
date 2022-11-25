@@ -11,12 +11,12 @@ const { UnnecessaryFieldsException } =require("../errors/unnecesary.fields.excep
 	}
 
 	async create(req, res, next) {
-		const { title, country, url_image, ...rest } = req.body;
+		const { title, country, url_image } = req.body;
 		try {
 			if (!country || !title || !url_image)
 				throw new MissingFieldsFormatException();
 
-			if (Object.keys(rest).length > 0) throw new UnnecessaryFieldsException();
+			// if (Object.keys(rest).length > 0) throw new UnnecessaryFieldsException();
 			await this.configurationCreateUseCase.execute(req.body);
 			res.status(200).send();
 		} catch (error) {

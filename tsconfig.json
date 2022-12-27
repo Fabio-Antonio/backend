@@ -1,0 +1,17 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "compilerOptions": {
+        "target": "ES3",
+        "lib": ["es5"],
+        "outDir": "dist",
+        "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false
+      },
+    "exclude": ["node_modules","dist"],
+    "ts-node": {"files": true}
+  }
